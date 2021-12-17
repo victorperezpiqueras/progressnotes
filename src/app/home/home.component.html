@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><span translate>Home</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-card *ngFor="let card of cards" class="card" (click)="editCard(card)">
+      <ion-card-content>
+        <ion-card-title>
+          <strong>{{ card.taskId }}</strong>
+          <ion-chip [color]="getCardTypeColor(card.type)">
+            <ion-label>{{ card.type }}</ion-label>
+          </ion-chip>
+          <ion-icon *ngIf="!card.alone" name="people"></ion-icon>
+          <ion-badge color="primary">{{ card.estimation }}</ion-badge>
+
+          <ion-button color="danger" class="ion-float-right" (click)="deleteCard(card)"
+            ><ion-icon name="trash-outline"></ion-icon
+          ></ion-button>
+          <!--  <ion-button color="primary" class="ion-float-right" (click)="editCard(card)"
+            ><ion-icon name="create-outline"></ion-icon
+          ></ion-button> -->
+        </ion-card-title>
+        <span>{{ card.description }}</span>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addCard()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Create issue</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-col>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-item class="input">
+          <ion-label position="floating">ID</ion-label>
+          <ion-input formControlName="taskId" [required]="true"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-item class="input">
+          <ion-label position="floating">Description</ion-label>
+          <ion-input formControlName="description"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-item class="input">
+          <ion-label position="floating">Estimation</ion-label>
+          <ion-input type="number" color="primary" formControlName="estimation"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-item class="input">
+          <ion-label position="stacked">Type</ion-label>
+          <ion-select okText="Okay" cancelText="Dismiss" formControlName="type">
+            <ion-select-option *ngFor="let type of types" [value]="type.value">{{
+              type.displayValue
+            }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-item class="input">
+          <ion-label position="floating">Alone</ion-label>
+          <ion-checkbox formControlName="alone"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-margin">
+        <ion-button color="success" type="submit" [disabled]="!form.valid">Save</ion-button>
+      </ion-row>
+    </form>
+  </ion-col>
+</ion-content>
