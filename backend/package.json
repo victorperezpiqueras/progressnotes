@@ -7,8 +7,9 @@
     "node": "16.13.1"
   },
   "scripts": {
-    "start-dev": "ts-node-dev src/apps/index.ts",
-    "start": "node dist/index.js",
+    "dev": "ts-node-dev src/apps/index.ts",
+    "start": "node dist/apps/index.js",
+    "build": "tsc",
     "postinstall": "tsc",
     "watch-node": "nodemon dist/index.js",
     "watch-ts": "tsc -w"
