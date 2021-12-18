@@ -1,16 +1,26 @@
 export class Card {
-  id: number;
-  taskId: string;
+  _id: string;
+  issueId: string;
   description: string;
   estimation: number;
   type: string;
   alone: boolean;
-  constructor(id: number, taskId: string, description: string, estimation: number, type: string, alone: boolean) {
-    this.id = id;
-    this.taskId = taskId;
+  done: boolean;
+  constructor(
+    _id: string,
+    issueId: string,
+    description: string,
+    estimation: number,
+    type: string,
+    alone: boolean,
+    done: boolean
+  ) {
+    this._id = _id;
+    this.issueId = issueId;
     this.description = description;
     this.estimation = estimation;
     this.type = type;
     this.alone = alone;
+    this.done = done;
   }
 }

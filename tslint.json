@@ -12,6 +12,7 @@
     "deprecation": {
       "severity": "warning"
     },
+    "semicolon": [true, "always"],
     "import-blacklist": [
       true,
       "rxjs/Rx"

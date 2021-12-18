@@ -5,10 +5,10 @@ import { map, catchError } from 'rxjs/operators';
 import { Card } from './card.model';
 
 const routes = {
-  get: () => `/cards/`,
-  post: () => `/cards/`,
-  put: (card: Card) => `/cards/${card.id}`,
-  delete: (card: Card) => `/cards/${card.id}`,
+  get: () => `/issues/`,
+  post: () => `/issues/`,
+  put: (card: Card) => `/issues/${card._id}`,
+  delete: (card: Card) => `/issues/${card._id}`,
 };
 
 export interface CardContext {

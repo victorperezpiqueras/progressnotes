@@ -61,3 +61,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Backend
+backend/node_modules
+backend/package-lock.json
+.env

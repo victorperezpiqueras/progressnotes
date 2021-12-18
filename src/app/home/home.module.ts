@@ -7,10 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '@shared';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule, SharedModule, IonicModule, HomeRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    ReactiveFormsModule,
+    FormsModule,
+    SharedModule,
+    IonicModule,
+    HomeRoutingModule,
+  ],
   declarations: [HomeComponent, CardCreateModal],
 })
 export class HomeModule {}

@@ -11,16 +11,23 @@
     <ion-card *ngFor="let card of cards" class="card" (click)="editCard(card)">
       <ion-card-content>
         <ion-card-title>
-          <strong>{{ card.taskId }}</strong>
+          <strong>{{ card.issueId }}</strong>
           <ion-chip [color]="getCardTypeColor(card.type)">
             <ion-label>{{ card.type }}</ion-label>
           </ion-chip>
           <ion-icon *ngIf="!card.alone" name="people"></ion-icon>
           <ion-badge color="primary">{{ card.estimation }}</ion-badge>
 
-          <ion-button color="danger" class="ion-float-right" (click)="deleteCard(card)"
+          <ion-button color="danger" class="ion-float-right" (click)="deleteCard($event, card)"
             ><ion-icon name="trash-outline"></ion-icon
           ></ion-button>
+          <ion-toggle
+            class="ion-float-right"
+            (click)="switchDone($event, card)"
+            [checked]="card.done"
+            [color]="getSwitchColor(card.done)"
+          ></ion-toggle>
+
           <!--  <ion-button color="primary" class="ion-float-right" (click)="editCard(card)"
             ><ion-icon name="create-outline"></ion-icon
           ></ion-button> -->

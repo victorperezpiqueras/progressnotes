@@ -2,7 +2,7 @@
   "cards": [
     {
       "id": 1,
-      "taskId": "MCO-1111",
+      "issueId": "MCO-1111",
       "description": "fix bug in the cockpit template",
       "estimation": 5,
       "type": "bug",
@@ -10,14 +10,14 @@
     },
     {
       "id": 2,
-      "taskId": "MCO-2222",
+      "issueId": "MCO-2222",
       "description": "fix bug in the casdasdte",
       "estimation": 13,
       "type": "task",
       "alone": false
     },
     {
-      "taskId": "MCO-333",
+      "issueId": "MCO-333",
       "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "type": "story",
       "estimation": 6,
@@ -26,7 +26,7 @@
     },
     {
       "id": 4,
-      "taskId": "MCO-4444",
+      "issueId": "MCO-4444",
       "description": "asdasd",
       "type": "task",
       "estimation": 12,

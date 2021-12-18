@@ -4,7 +4,7 @@ import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
 import { Card } from './models/card.model';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { CardCreateModal } from './card-create-modal/card-create-modal.component';
 
 @Component({
@@ -20,10 +20,13 @@ export class HomeComponent implements OnInit {
 
   suffix: string = 'MCO-';
 
+  switchingCard = false;
+
   constructor(
     private cardsService: CardsService,
     public modalController: ModalController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -41,7 +44,6 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((cards: Card[]) => {
         this.cards = cards;
-        console.log(cards);
       });
   }
 
@@ -69,8 +71,8 @@ export class HomeComponent implements OnInit {
     });
     modal.onDidDismiss().then((modalDataResponse) => {
       if (modalDataResponse.data) {
-        console.log(modalDataResponse);
         this.cardsService.createCard(modalDataResponse.data.card).subscribe((data) => {
+          this.presentToast('created');
           this.reloadCards();
         });
       }
@@ -79,24 +81,24 @@ export class HomeComponent implements OnInit {
     return await modal.present();
   }
 
-  async deleteCard(card: Card) {
+  async deleteCard(event: any, card: Card) {
+    event.stopPropagation();
     const alert = await this.alertController.create({
-      header: `Delete issue ${card.taskId}`,
+      header: `Delete issue ${card.issueId}`,
       /* subHeader: '', */
-      message: `Are you sure you want to delete the issue ${card.taskId}?`,
+      message: `Are you sure you want to delete the issue ${card.issueId}?`,
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
+          handler: () => {},
         },
         {
           text: 'Delete',
           role: 'delete',
           handler: () => {
             this.cardsService.deleteCard(card).subscribe((data) => {
+              this.presentToast('deleted');
               this.reloadCards();
             });
           },
@@ -108,6 +110,7 @@ export class HomeComponent implements OnInit {
   }
 
   async editCard(card: Card) {
+    if (this.switchingCard) return;
     const modal = await this.modalController.create({
       component: CardCreateModal,
       componentProps: {
@@ -117,14 +120,38 @@ export class HomeComponent implements OnInit {
     });
     modal.onDidDismiss().then((modalDataResponse) => {
       if (modalDataResponse.data) {
-        console.log(modalDataResponse);
         let editCard: Card = modalDataResponse.data.card;
-        editCard.id = card.id;
+        editCard._id = card._id;
         this.cardsService.editCard(editCard).subscribe((data) => {
+          this.presentToast('edited');
           this.reloadCards();
         });
       }
     });
     return await modal.present();
+  }
+
+  switchDone(event: any, card: Card) {
+    event.stopPropagation();
+    this.switchingCard = true;
+    card.done = !card.done;
+    this.cardsService.editCard(card).subscribe((data) => {
+      this.presentToast('switched to done');
+      this.reloadCards();
+      this.switchingCard = false;
+    });
+  }
+
+  getSwitchColor(done: boolean) {
+    if (!done) return 'danger';
+    else return 'success';
+  }
+
+  async presentToast(action: string, duration: number = 1000) {
+    const toast = await this.toastController.create({
+      message: `Issue ${action} successfully`,
+      duration: duration,
+    });
+    toast.present();
   }
 }

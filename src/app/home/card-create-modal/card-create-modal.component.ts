@@ -30,7 +30,7 @@ export class CardCreateModal implements OnInit {
   }
   public set suffix(value: string) {
     this._suffix = value;
-    this.form.controls['taskId'].setValue(value + '');
+    this.form.controls['issueId'].setValue(value + '');
   }
 
   @Input()
@@ -40,29 +40,28 @@ export class CardCreateModal implements OnInit {
   }
   public set card(value: Card) {
     this._card = value;
-    this.form.controls['taskId'].setValue(value.taskId);
+    this.form.controls['issueId'].setValue(value.issueId);
     this.form.controls['description'].setValue(value.description);
     this.form.controls['type'].setValue(value.type);
     this.form.controls['estimation'].setValue(value.estimation);
     this.form.controls['alone'].setValue(value.alone);
+    this.form.controls['done'].setValue(value.done);
   }
 
   constructor(public modalController: ModalController, private formBuilder: FormBuilder) {
-    console.log(this.suffix);
     this.form = this.formBuilder.group({
-      taskId: ['', Validators.required],
+      issueId: ['', Validators.required],
       description: ['', Validators.required],
       type: ['task', Validators.required],
-      estimation: [null ,[Validators.min(0),Validators.max(40)]],
+      estimation: [null, [Validators.min(0), Validators.max(40)]],
       alone: [true, Validators.required],
+      done: [false, Validators.required],
     });
     /* this.modalController. */
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe((data) => {
-      console.log(data);
-    });
+    this.form.valueChanges.subscribe((data) => {});
   }
 
   save() {
