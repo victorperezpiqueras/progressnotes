@@ -23,4 +23,4 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: cd backend && npm install && npm run build
-    - run: npm install && ng build --aot --prod --outputHashing=all
+    - run: npm install && npm install @angular/cli && ng build --aot --prod --outputHashing=all
