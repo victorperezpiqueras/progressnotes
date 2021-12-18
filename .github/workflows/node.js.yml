@@ -22,7 +22,5 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - run: cd backend
-    - run: npm run build
-    - run: cd ..
-    - run: npm run build
+    - run: cd backend && npm run build
+    - run: ng build --aot --prod --outputHashing=all
