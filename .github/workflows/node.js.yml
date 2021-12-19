@@ -29,13 +29,13 @@ jobs:
 
     - name: Install Cordova
       run: npm install -g cordova
-      
-    - name: Add android
-      run: cd cordova && cordova platform add android
 
     - name: Build android
       run: npm run cordova-android
-
+      
+    - name: Add android platform
+      run: cd cordova && cordova platform add android
+      
     - name: Upload dev APK
       uses: actions/upload-artifact@v1
       with:
