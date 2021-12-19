@@ -22,7 +22,7 @@ jobs:
         node-version: 16.x
 
     - name: Build frontend
-      run: npm install && npm run build:prod
+      run: npm install && npm run build:frontend
 
     - name: Build backend
       run: npm run build:backend

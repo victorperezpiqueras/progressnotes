@@ -5,9 +5,9 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run write:env -s && ng build",
-    "build:prod": "ng build --aot --outputHashing=all",
+    "build:frontend": "ng build --aot --outputHashing=all",
     "build:backend": "cd backend && npm install && npm run build",
-    "heroku-postbuild": "npm run build:prod && npm run build:backend",
+    "heroku-postbuild": "npm run build:frontend && npm run build:backend",
     "start": "cd backend && npm start",
     "startx": "npm run write:env -s && ng serve --proxy-config proxy.conf.js",
     "deploy": "npm run write:env -s && ng deploy",
