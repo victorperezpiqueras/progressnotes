@@ -149,8 +149,10 @@ export class HomeComponent implements OnInit {
     event.stopPropagation();
     this.switchingCard = true;
     card.done = !card.done;
+    const msg: string = card.done ? 'switched to done' : 'switched to undone';
+    const color: string = card.done ? 'success' : 'primary';
     this.cardsService.editCard(card).subscribe((data) => {
-      this.presentToast('switched to done');
+      this.presentToast(msg, undefined, color);
       this.reloadCards();
       this.switchingCard = false;
     });
@@ -161,12 +163,20 @@ export class HomeComponent implements OnInit {
     else return 'success';
   }
 
-  async presentToast(action: string, duration: number = 2000) {
+  async presentToast(action: string, duration?: number, color?: string) {
+    duration ||= 2000;
+    color ||= 'success';
+    let msg: string;
+    if (color === 'success') {
+      msg = `<ion-icon name='checkmark-circle' color='success' size='large' style="vertical-align: middle"></ion-icon> Issue ${action} successfully`;
+    } else {
+      msg = `<ion-icon name='build' color='success' size='primary' style="vertical-align: middle"></ion-icon> Issue ${action} successfully`;
+    }
     const toast = await this.toastController.create({
-      message: `<ion-icon name='checkmark-circle' color='success' size='large' style="vertical-align: middle"></ion-icon> Issue ${action} successfully`,
+      message: msg,
       duration: duration,
       animated: true,
-      color: 'success',
+      color: color,
       /* cssClass: 'class-toast',  ✅ */
     });
     toast.present();

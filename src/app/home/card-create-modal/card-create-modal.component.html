@@ -9,46 +9,46 @@
     <form [formGroup]="form" (ngSubmit)="save()">
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label position="floating">ID</ion-label>
+          <ion-label position="floating"><ion-icon name="cube"></ion-icon> ID</ion-label>
           <ion-input formControlName="issueId" [required]="true"></ion-input>
         </ion-item>
       </ion-row>
 
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label position="floating">Description</ion-label>
+          <ion-label position="floating"><ion-icon name="text"></ion-icon> Description</ion-label>
           <ion-input formControlName="description"></ion-input>
         </ion-item>
       </ion-row>
 
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label position="floating">Estimation</ion-label>
+          <ion-label position="floating"><ion-icon name="flash"></ion-icon> Estimation</ion-label>
           <ion-input type="number" color="primary" formControlName="estimation"></ion-input>
         </ion-item>
       </ion-row>
 
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label position="stacked">Type</ion-label>
+          <ion-label position="stacked"><ion-icon name="layers"></ion-icon> Type</ion-label>
           <ion-select okText="Okay" cancelText="Dismiss" formControlName="type">
-            <ion-select-option *ngFor="let type of types" [value]="type.value">{{
-              type.displayValue
-            }}</ion-select-option>
+            <ion-select-option *ngFor="let type of types" [value]="type.value">
+              {{ type.displayValue }}
+            </ion-select-option>
           </ion-select>
         </ion-item>
       </ion-row>
 
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label>Alone</ion-label>
+          <ion-label><ion-icon name="people"></ion-icon> Alone</ion-label>
           <ion-checkbox formControlName="alone"></ion-checkbox>
         </ion-item>
       </ion-row>
 
       <ion-row class="ion-justify-content-center ion-margin">
         <ion-item class="input">
-          <ion-label>Done</ion-label>
+          <ion-label><ion-icon name="checkmark-circle"></ion-icon> Done</ion-label>
           <ion-checkbox formControlName="done"></ion-checkbox>
         </ion-item>
       </ion-row>

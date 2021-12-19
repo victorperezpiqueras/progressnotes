@@ -90,8 +90,6 @@ export class CardCreateModal implements OnInit {
   }
 
   timeToDone(card: Card) {
-    const doneDate = new Date(card.doneDate);
-    const creationDate = new Date(card.creationDate);
     const days = card.doneDate - card.creationDate;
     const oneDay = 1000 * 60 * 60; //* 24;
     let diffInHours = Math.round(days / oneDay);
