@@ -159,10 +159,13 @@ export class HomeComponent implements OnInit {
     else return 'success';
   }
 
-  async presentToast(action: string, duration: number = 1000) {
+  async presentToast(action: string, duration: number = 2000) {
     const toast = await this.toastController.create({
-      message: `Issue ${action} successfully`,
+      message: `<ion-icon name='checkmark-circle' color='success' size='large' style="vertical-align: middle"></ion-icon> Issue ${action} successfully`,
       duration: duration,
+      animated: true,
+      color: 'success',
+      /* cssClass: 'class-toast',  ✅ */
     });
     toast.present();
   }

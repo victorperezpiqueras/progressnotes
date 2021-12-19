@@ -11,7 +11,10 @@
     <ion-col class="ion-justify-content-center">
       <ion-row class="ion-justify-content-center">
         <ion-text color="primary">
-          <h3>Issues to be done:</h3>
+          <h3>
+            <ion-icon name="build" color="primary" size="large" style="vertical-align: middle"></ion-icon>
+            <span>Issues to be done:</span>
+          </h3>
         </ion-text>
       </ion-row>
       <ng-container
@@ -27,7 +30,10 @@
 
       <ion-row class="ion-justify-content-center">
         <ion-text color="success">
-          <h3>Issues done:</h3>
+          <h3>
+            <ion-icon name="checkmark-circle" color="success" size="large" style="vertical-align: middle"></ion-icon>
+            <span>Issues done:</span>
+          </h3>
         </ion-text>
       </ion-row>
       <ng-container
@@ -63,7 +69,7 @@
               </ion-card-title>
             </ion-row>
             <ion-row>
-              <ion-item lines="none">
+              <ion-item class="description" lines="none">
                 <ion-label class="ion-text-wrap">{{ card.description }}</ion-label>
               </ion-item>
             </ion-row>
