@@ -24,6 +24,9 @@ jobs:
       with:
         java-version: '8'
 
+    - name: Build stack
+      run: npm install
+
     - name: Install Cordova
       run: npm install -g cordova
 

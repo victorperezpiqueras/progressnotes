@@ -1,8 +1,10 @@
 # Progress Notes
 
-[![Stack CI](https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml/badge.svg)](https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml)
+<p align="start">
+        <img href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml" src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml/badge.svg">
+        <img href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml" src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml/badge.svg">
 
-[![Cordova CI](https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml/badge.svg)](https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml)
+</p>
 
 This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
 version 10.1.2
