@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Card } from './../models/card.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 
 export interface CardType {
@@ -64,6 +64,11 @@ export class CardCreateModal implements OnInit {
   }
 
   ngOnInit(): void {
+    const modalState = {
+      modal: true,
+      desc: 'fake state for our modal',
+    };
+    history.pushState(modalState, '');
     this.form.valueChanges.subscribe((data) => {});
   }
 
@@ -93,5 +98,16 @@ export class CardCreateModal implements OnInit {
     const diffInDays = Math.floor(diffInHours / 24);
     diffInHours = diffInHours % 24;
     return { days: diffInDays, hours: diffInHours };
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  dismissModal() {
+    this.modalController.dismiss();
+  }
+
+  ngOnDestroy() {
+    if (window.history.state.modal) {
+      history.back();
+    }
   }
 }

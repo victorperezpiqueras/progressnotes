@@ -6,6 +6,7 @@ import { QuoteService } from './quote.service';
 import { Card } from './models/card.model';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { CardCreateModal } from './card-create-modal/card-create-modal.component';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -125,7 +126,6 @@ export class HomeComponent implements OnInit {
     const modal = await this.modalController.create({
       component: CardCreateModal,
       componentProps: {
-        suffix: this.suffix,
         card: card,
         mode: 'edit',
       },
@@ -134,7 +134,9 @@ export class HomeComponent implements OnInit {
       if (modalDataResponse.data) {
         let editCard: Card = modalDataResponse.data.card;
         editCard._id = card._id;
+        console.log(editCard);
         this.cardsService.editCard(editCard).subscribe((data) => {
+          console.log(data);
           this.presentToast('edited');
           this.reloadCards();
         });
