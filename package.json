@@ -19,7 +19,10 @@
     "prettier:check": "prettier --list-different \"./src/**/*.{ts,js,html,scss}\"",
     "postinstall": "ng build --aot --outputHashing=all && cd backend && npm install",
     "postinstallx": "npm run prettier -s && husky install",
-    "generate": "ng generate"
+    "generate": "ng generate",
+    "cordova": "ng build --base-href . --output-path cordova/www",
+    "cordova-browser": "npm run cordova && cd cordova && cordova run browser",
+    "cordova-android": "npm run cordova && cd cordova && cordova run android"
   },
   "dependencies": {
     "@angular/animations": "~13.1.0",
