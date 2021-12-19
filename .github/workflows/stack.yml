@@ -21,5 +21,8 @@ jobs:
       with:
         node-version: 16.x
 
-    - name: Build stack
-      run: npm install
+    - name: Build frontend
+      run: npm install && npm run build:prod
+
+    - name: Build backend
+      run: npm run build:backend

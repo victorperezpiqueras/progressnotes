@@ -24,7 +24,7 @@ jobs:
       with:
         java-version: '8'
 
-    - name: Build stack
+    - name: Install frontend dependencies
       run: npm install
 
     - name: Install Cordova

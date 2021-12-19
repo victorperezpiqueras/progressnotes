@@ -5,6 +5,9 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run write:env -s && ng build",
+    "build:prod": "ng build --aot --outputHashing=all",
+    "build:backend": "cd backend && npm install && npm run build",
+    "heroku-postbuild": "npm run build:prod && run build:backend",
     "start": "cd backend && npm start",
     "startx": "npm run write:env -s && ng serve --proxy-config proxy.conf.js",
     "deploy": "npm run write:env -s && ng deploy",
@@ -17,7 +20,6 @@
     "write:env": "ngx-scripts env npm_package_version",
     "prettier": "prettier --write \"./src/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./src/**/*.{ts,js,html,scss}\"",
-    "postinstall": "ng build --aot --outputHashing=all && cd backend && npm install",
     "postinstallx": "npm run prettier -s && husky install",
     "generate": "ng generate",
     "cordova": "ng build --base-href . --output-path cordova/www",

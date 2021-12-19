@@ -10,7 +10,7 @@
     "dev": "ts-node-dev src/apps/index.ts",
     "start": "node dist/apps/index.js",
     "build": "tsc",
-    "postinstall": "tsc",
+    "postinstallx": "tsc",
     "watch-node": "nodemon dist/index.js",
     "watch-ts": "tsc -w"
   },
