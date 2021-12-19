@@ -17,6 +17,8 @@ export class EditIssue {
       type,
       alone,
       done,
+      creationDate,
+      doneDate,
     }: {
       issueId: string;
       description: string;
@@ -24,9 +26,11 @@ export class EditIssue {
       type: string;
       alone: boolean;
       done: boolean;
+      creationDate: number;
+      doneDate: number;
     }
   ): Promise<Issue> {
-    const issue = new Issue({ issueId, description, estimation, type, alone, done });
+    const issue = new Issue({ issueId, description, estimation, type, alone, done, creationDate, doneDate });
     return this.repository.edit(id, issue);
   }
 }

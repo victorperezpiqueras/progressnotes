@@ -43,8 +43,17 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe((cards: Card[]) => {
-        this.cards = cards;
+        this.cards = cards.sort((a, b) => b.creationDate - a.creationDate);
+        console.log(this.cards);
       });
+  }
+
+  get getDoneCards() {
+    return this.cards.filter((card) => card.done);
+  }
+
+  get getUndoneCards() {
+    return this.cards.filter((card) => !card.done);
   }
 
   getCardTypeColor(type: string) {
@@ -67,11 +76,13 @@ export class HomeComponent implements OnInit {
       component: CardCreateModal,
       componentProps: {
         suffix: this.suffix,
+        mode: 'create',
       },
     });
     modal.onDidDismiss().then((modalDataResponse) => {
       if (modalDataResponse.data) {
         this.cardsService.createCard(modalDataResponse.data.card).subscribe((data) => {
+          console.log(data);
           this.presentToast('created');
           this.reloadCards();
         });
@@ -116,6 +127,7 @@ export class HomeComponent implements OnInit {
       componentProps: {
         suffix: this.suffix,
         card: card,
+        mode: 'edit',
       },
     });
     modal.onDidDismiss().then((modalDataResponse) => {

@@ -5,6 +5,8 @@ export default class Issue {
   readonly type: string;
   readonly alone: boolean;
   readonly done: boolean;
+  readonly creationDate: number;
+  readonly doneDate: number;
   constructor({
     issueId,
     description,
@@ -12,6 +14,8 @@ export default class Issue {
     type,
     alone,
     done,
+    creationDate,
+    doneDate,
   }: {
     issueId: string;
     description: string;
@@ -19,6 +23,8 @@ export default class Issue {
     type: string;
     alone: boolean;
     done: boolean;
+    creationDate: number;
+    doneDate: number;
   }) {
     this.issueId = issueId;
     this.description = description;
@@ -26,5 +32,7 @@ export default class Issue {
     this.type = type;
     this.alone = alone;
     this.done = done;
+    this.creationDate = creationDate;
+    this.doneDate = doneDate;
   }
 }

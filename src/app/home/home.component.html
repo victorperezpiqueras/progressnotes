@@ -7,8 +7,48 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-grid class="ion-justify-content-center">
+    <ion-col class="ion-justify-content-center">
+      <ion-row class="ion-justify-content-center">
+        <ion-text color="primary">
+          <h3>Issues to be done:</h3>
+        </ion-text>
+      </ion-row>
+      <ng-container
+        *ngFor="let card of getUndoneCards"
+        [ngTemplateOutlet]="cardTemplate"
+        [ngTemplateOutletContext]="{ card: card }"
+      >
+      </ng-container>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-item-divider style="width: 70%"></ion-item-divider>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-text color="success">
+          <h3>Issues done:</h3>
+        </ion-text>
+      </ion-row>
+      <ng-container
+        *ngFor="let card of getDoneCards"
+        [ngTemplateOutlet]="cardTemplate"
+        [ngTemplateOutletContext]="{ card: card }"
+      >
+      </ng-container>
+    </ion-col>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addCard()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ng-template #cardTemplate let-card="card">
   <ion-row class="ion-justify-content-center">
-    <ion-card *ngFor="let card of cards" class="card" (click)="editCard(card)">
+    <ion-card class="card ion-justify-content-center" (click)="editCard(card)">
       <ion-card-content>
         <ion-card-title>
           <strong>{{ card.issueId }}</strong>
@@ -36,10 +76,4 @@
       </ion-card-content>
     </ion-card>
   </ion-row>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addCard()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
+</ng-template>

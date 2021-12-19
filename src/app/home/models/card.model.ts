@@ -6,6 +6,8 @@ export class Card {
   type: string;
   alone: boolean;
   done: boolean;
+  creationDate: number;
+  doneDate: number;
   constructor(
     _id: string,
     issueId: string,
@@ -13,7 +15,9 @@ export class Card {
     estimation: number,
     type: string,
     alone: boolean,
-    done: boolean
+    done: boolean,
+    creationDate: number,
+    doneDate: number
   ) {
     this._id = _id;
     this.issueId = issueId;
@@ -22,5 +26,7 @@ export class Card {
     this.type = type;
     this.alone = alone;
     this.done = done;
+    this.creationDate = creationDate;
+    this.doneDate = doneDate;
   }
 }

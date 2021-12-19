@@ -40,6 +40,7 @@ export class CardCreateModal implements OnInit {
   }
   public set card(value: Card) {
     this._card = value;
+    this.mode = 'edit';
     this.form.controls['issueId'].setValue(value.issueId);
     this.form.controls['description'].setValue(value.description);
     this.form.controls['type'].setValue(value.type);
@@ -47,6 +48,8 @@ export class CardCreateModal implements OnInit {
     this.form.controls['alone'].setValue(value.alone);
     this.form.controls['done'].setValue(value.done);
   }
+  @Input()
+  mode: string = 'create';
 
   constructor(public modalController: ModalController, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -66,6 +69,29 @@ export class CardCreateModal implements OnInit {
 
   save() {
     const card = this.form.value as Card;
+    if (this.mode === 'edit') {
+      if (card.done && this.card.done !== card.done) {
+        card.doneDate = Date.now();
+      }
+    } else if (this.mode === 'create') {
+      card.creationDate = Date.now();
+    }
+
     this.modalController.dismiss({ card });
+  }
+
+  parseDate(date: number) {
+    return new Date(date).toDateString();
+  }
+
+  timeToDone(card: Card) {
+    const doneDate = new Date(card.doneDate);
+    const creationDate = new Date(card.creationDate);
+    const days = card.doneDate - card.creationDate;
+    const oneDay = 1000 * 60 * 60; //* 24;
+    let diffInHours = Math.round(days / oneDay);
+    const diffInDays = Math.floor(diffInHours / 24);
+    diffInHours = diffInHours % 24;
+    return { days: diffInDays, hours: diffInHours };
   }
 }

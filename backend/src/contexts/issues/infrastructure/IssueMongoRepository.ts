@@ -9,14 +9,23 @@ export default class IssueMongoRepository implements IssueRepository {
     return allIssues;
   }
   async create(issue: Issue): Promise<Issue> {
-    const { issueId, description, estimation, type, alone, done } = issue;
-    const mongoIssue = new IssueMongoModel({ issueId, description, estimation, type, alone, done });
+    const { issueId, description, estimation, type, alone, done, creationDate, doneDate } = issue;
+    const mongoIssue = new IssueMongoModel({
+      issueId,
+      description,
+      estimation,
+      type,
+      alone,
+      done,
+      creationDate,
+      doneDate,
+    });
     await mongoIssue.save();
     return issue;
   }
   async edit(id: any, issue: Issue): Promise<Issue> {
-    const { issueId, description, estimation, type, alone, done } = issue;
-    await IssueMongoModel.findByIdAndUpdate(id, { description, estimation, type, alone, done });
+    const { issueId, description, estimation, type, alone, done, creationDate, doneDate } = issue;
+    await IssueMongoModel.findByIdAndUpdate(id, { description, estimation, type, alone, done, creationDate, doneDate });
     return issue;
   }
   async delete(id: any): Promise<Issue> {
