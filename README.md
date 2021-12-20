@@ -1,8 +1,11 @@
 # Progress Notes
 
 <p align="start">
-        <img href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml" src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml/badge.svg">
-        <img href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml" src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml/badge.svg">
+
+<a href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml">
+        <img src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/stack.yml/badge.svg"></a>
+<a href="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml">
+        <img src="https://github.com/victorperezpiqueras/progressnotes/actions/workflows/cordova.yml/badge.svg"></a>
 
 </p>
 
