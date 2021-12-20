@@ -31,12 +31,15 @@ jobs:
     - name: Install frontend dependencies
       run: npm install
 
-    - name: Add Android platform
-      working-directory: ./cordova
-      run: cordova platform add android@latest
+    #- name: Add Android platform
+    #  working-directory: ./cordova
+    #  run: cordova platform add android@latest
+
+    #- name: Build android
+    # run: npm run cordova-android
 
     - name: Build android
-      run: npm run cordova-android
+      run: npm run cordova-build-android
 
    # - name: Build Android Dev APK
    #   working-directory: ./cordova
