@@ -15,26 +15,58 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Use Node.js 16.x
+
+    - name: Setup Node.js 16.x
       uses: actions/setup-node@v2
       with:
         node-version: 16.x
-    - name: setup java sdk
+    - name: Setup Java
       uses: actions/setup-java@v1
       with:
-        java-version: '8'
-
-    - name: Install frontend dependencies
-      run: npm install
+        java-version: '1.8'
 
     - name: Install Cordova
       run: npm install -g cordova
 
+    - name: Install frontend dependencies
+      run: npm install
+
+    - name: Add Android platform
+      working-directory: ./cordova
+      run: cordova platform add android@latest
+
     - name: Build android
-      run: npm run cordova-build-android
-      
+      run: npm run cordova-android
+
+   # - name: Build Android Dev APK
+   #   working-directory: ./cordova
+   #   run: cordova build android
+
+    #- name: Build Android Release APK
+    #  working-directory: ./cordova
+    #  run: cordova build android --release --prod
+
+    - name: Generate the Android App Bundle
+      working-directory: ./cordova/platforms/android/
+      run: ./gradlew bundle
+
     - name: Upload dev APK
       uses: actions/upload-artifact@v1
       with:
         name: app-dev
         path: ./cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+    - name: Upload release bundle
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-release
+        path: ./cordova/platforms/android/app/build/outputs/bundle/release/app.aab
+
+    #- name: Build android
+    #  run: npm run cordova-build-android
+    #  
+    #- name: Upload dev APK
+    #  uses: actions/upload-artifact@v1
+    #  with:
+    #    name: app-dev
+    #    path: ./cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
