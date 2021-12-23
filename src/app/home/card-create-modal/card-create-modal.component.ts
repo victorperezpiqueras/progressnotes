@@ -47,6 +47,7 @@ export class CardCreateModal implements OnInit {
     this.form.controls['estimation'].setValue(value.estimation);
     this.form.controls['alone'].setValue(value.alone);
     this.form.controls['done'].setValue(value.done);
+    this.form.controls['sprint'].setValue(value.sprint);
   }
   @Input()
   mode: string = 'create';
@@ -59,6 +60,7 @@ export class CardCreateModal implements OnInit {
       estimation: [null, [Validators.min(0), Validators.max(40)]],
       alone: [true, Validators.required],
       done: [false, Validators.required],
+      sprint: [null, Validators.required],
     });
     /* this.modalController. */
   }

@@ -9,7 +9,7 @@ export default class IssueMongoRepository implements IssueRepository {
     return allIssues;
   }
   async create(issue: Issue): Promise<Issue> {
-    const { issueId, description, estimation, type, alone, done, creationDate, doneDate } = issue;
+    const { issueId, description, estimation, type, alone, done, creationDate, doneDate, sprint } = issue;
     const mongoIssue = new IssueMongoModel({
       issueId,
       description,
@@ -19,12 +19,13 @@ export default class IssueMongoRepository implements IssueRepository {
       done,
       creationDate,
       doneDate,
+      sprint,
     });
     await mongoIssue.save();
     return issue;
   }
   async edit(id: any, issue: Issue): Promise<Issue> {
-    const { issueId, description, estimation, type, alone, done, creationDate, doneDate } = issue;
+    const { issueId, description, estimation, type, alone, done, creationDate, doneDate, sprint } = issue;
     await IssueMongoModel.findByIdAndUpdate(id, {
       issueId,
       description,
@@ -34,6 +35,7 @@ export default class IssueMongoRepository implements IssueRepository {
       done,
       creationDate,
       doneDate,
+      sprint,
     });
     return issue;
   }

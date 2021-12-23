@@ -9,6 +9,7 @@ const IssueMongoSchema = new mongoose.Schema({
   done: { type: Boolean, required: true },
   creationDate: { type: Number, required: true },
   doneDate: { type: Number },
+  sprint: { type: Number, required: true },
 });
 const IssueMongoModel = mongoose.model('Issue', IssueMongoSchema);
 export { IssueMongoModel };

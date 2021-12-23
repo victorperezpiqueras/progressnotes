@@ -16,9 +16,10 @@ export class CreateIssue {
     alone: boolean,
     done: boolean,
     creationDate: number,
-    doneDate: number
+    doneDate: number,
+    sprint: number
   ): Promise<Issue> {
-    const issue = new Issue({ issueId, description, estimation, type, alone, done, creationDate, doneDate });
+    const issue = new Issue({ issueId, description, estimation, type, alone, done, creationDate, doneDate, sprint });
 
     return this.repository.create(issue);
   }

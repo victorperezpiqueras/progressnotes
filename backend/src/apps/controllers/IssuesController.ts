@@ -20,8 +20,18 @@ export default class IssuesController {
   async create(req: Request, res: Response) {
     try {
       const useCase = new CreateIssue(new IssueMongoRepository());
-      const { id, issueId, description, estimation, type, alone, done, creationDate, doneDate } = req.body;
-      const issue = await useCase.run(issueId, description, estimation, type, alone, done, creationDate, doneDate);
+      const { id, issueId, description, estimation, type, alone, done, creationDate, doneDate, sprint } = req.body;
+      const issue = await useCase.run(
+        issueId,
+        description,
+        estimation,
+        type,
+        alone,
+        done,
+        creationDate,
+        doneDate,
+        sprint
+      );
       res.json(issue);
     } catch (err) {
       res.status(500).json(err);
@@ -31,7 +41,7 @@ export default class IssuesController {
   async edit(req: Request, res: Response) {
     try {
       const useCase = new EditIssue(new IssueMongoRepository());
-      const { issueId, description, estimation, type, alone, done, creationDate, doneDate } = req.body;
+      const { issueId, description, estimation, type, alone, done, creationDate, doneDate, sprint } = req.body;
       const id = req.params.id;
       const issue = await useCase.run(id, {
         issueId,
@@ -42,6 +52,7 @@ export default class IssuesController {
         done,
         creationDate,
         doneDate,
+        sprint,
       });
       res.json(issue);
     } catch (err) {

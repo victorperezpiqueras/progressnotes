@@ -7,6 +7,7 @@ export default class Issue {
   readonly done: boolean;
   readonly creationDate: number;
   readonly doneDate: number;
+  readonly sprint: number;
   constructor({
     issueId,
     description,
@@ -16,6 +17,7 @@ export default class Issue {
     done,
     creationDate,
     doneDate,
+    sprint,
   }: {
     issueId: string;
     description: string;
@@ -25,6 +27,7 @@ export default class Issue {
     done: boolean;
     creationDate: number;
     doneDate: number;
+    sprint: number;
   }) {
     this.issueId = issueId;
     this.description = description;
@@ -34,5 +37,6 @@ export default class Issue {
     this.done = done;
     this.creationDate = creationDate;
     this.doneDate = doneDate;
+    this.sprint = sprint;
   }
 }

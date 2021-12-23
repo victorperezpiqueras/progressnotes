@@ -8,6 +8,7 @@ export class Card {
   done: boolean;
   creationDate: number;
   doneDate: number;
+  sprint: number;
   constructor(
     _id: string,
     issueId: string,
@@ -17,7 +18,8 @@ export class Card {
     alone: boolean,
     done: boolean,
     creationDate: number,
-    doneDate: number
+    doneDate: number,
+    sprint: number
   ) {
     this._id = _id;
     this.issueId = issueId;
@@ -28,5 +30,6 @@ export class Card {
     this.done = done;
     this.creationDate = creationDate;
     this.doneDate = doneDate;
+    this.sprint = sprint;
   }
 }

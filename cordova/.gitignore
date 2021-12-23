@@ -8,3 +8,5 @@ package-lock.json
 /plugins/
 /platforms/
 www
+
+.gradle

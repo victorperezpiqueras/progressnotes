@@ -57,13 +57,14 @@
     <ion-card class="card" (click)="editCard(card)">
       <ion-grid>
         <ion-row>
-          <ion-col size="9">
+          <ion-col size="8">
             <ion-row>
               <ion-card-title
                 ><strong>{{ card.issueId }}</strong>
                 <ion-chip [color]="getCardTypeColor(card.type)">
                   <ion-label>{{ card.type }}</ion-label>
                 </ion-chip>
+
                 <ion-icon *ngIf="!card.alone" name="people"></ion-icon>
                 <ion-badge color="primary">{{ card.estimation }}</ion-badge>
               </ion-card-title>
@@ -74,7 +75,13 @@
               </ion-item>
             </ion-row>
           </ion-col>
-          <ion-col size="3">
+          <ion-col size="4">
+            <ion-row class="ion-justify-content-end">
+              <ion-chip color="secondary">
+                <ion-label>Sprint {{ card.sprint }}</ion-label>
+              </ion-chip>
+            </ion-row>
+
             <ion-row class="ion-justify-content-end" style="margin-bottom: 5%">
               <!--   <ion-text color="success">
                 <h5>Done:</h5>
