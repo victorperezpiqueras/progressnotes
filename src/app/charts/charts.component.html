@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><ion-icon name="bar-chart"></ion-icon><span translate> Charts</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="showingCharts">
+    <ion-segment-button value="overview">
+      <ion-label>Overview</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="workAnalysis">
+      <ion-label>Work analysis</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-grid class="ion-grid-width-100">
+    <ion-col>
+      <ion-row [hidden]="showingCharts !== 'overview'">
+        <ion-col>
+          <ion-card class="ion-text-center">
+            <ion-card-content>
+              <ion-card-title>Work Done</ion-card-title>
+              <div style="min-height: 300px">
+                <canvas id="workDoneChart"></canvas>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row [hidden]="showingCharts !== 'workAnalysis'">
+        <ion-col size="12">
+          <ion-card class="ion-text-center">
+            <ion-card-content>
+              <ion-card-title>Story Points By Type</ion-card-title>
+              <div width="100%">
+                <canvas id="chartStoryPointsType"></canvas>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12">
+          <ion-card class="ion-text-center">
+            <ion-card-content>
+              <ion-card-title>Nº Issues By Type</ion-card-title>
+              <div width="100%">
+                <canvas id="chartNumIssuesType"></canvas>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-card class="ion-text-center">
+            <ion-card-content>
+              <ion-card-title>Issues Alone or in Team</ion-card-title>
+              <div width="100%">
+                <canvas id="aloneChart"></canvas>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <!--   <ion-row>
+        <canvas
+          baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins"
+        >
+        </canvas>
+      </ion-row> -->
+    </ion-col>
+  </ion-grid>
+</ion-content>

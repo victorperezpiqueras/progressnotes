@@ -32,4 +32,8 @@ export class Card {
     this.doneDate = doneDate;
     this.sprint = sprint;
   }
+
+  setDone() {
+    this.doneDate = Date.now();
+  }
 }

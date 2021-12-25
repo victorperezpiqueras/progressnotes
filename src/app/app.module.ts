@@ -14,6 +14,7 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     TranslateModule.forRoot(),
     IonicModule.forRoot(),
     SharedModule,
+
     ShellModule,
     HomeModule,
     AuthModule,

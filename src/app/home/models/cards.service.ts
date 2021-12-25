@@ -33,4 +33,8 @@ export class CardsService {
   deleteCard(card: Card): Observable<any> {
     return this.httpClient.delete(routes.delete(card)).pipe(map((body: any) => body));
   }
+
+  getIssueTypes() {
+    return { titles: ['bug', 'task', 'story', 'spike'], colors: ['#eb445a', '#3880ff', '#2dd36f', '#ffc409'] };
+  }
 }

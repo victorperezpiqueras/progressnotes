@@ -1,3 +1,4 @@
+import { CardsFacadeService } from './models/cards-facade.service';
 import { CardsService } from './models/cards.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
@@ -6,7 +7,7 @@ import { QuoteService } from './quote.service';
 import { Card } from './models/card.model';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { CardCreateModal } from './card-create-modal/card-create-modal.component';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import { fromEvent, Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   quote: string | undefined;
-  isLoading = false;
+  isLoading: boolean = false;
+  /* loading$: Observable<boolean>; */
 
   cards: Card[] = [];
 
@@ -25,10 +27,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private cardsService: CardsService,
+    private facade: CardsFacadeService,
     public modalController: ModalController,
     public alertController: AlertController,
     public toastController: ToastController
-  ) {}
+  ) {
+    /* this.loading$ = facade.loading$; */
+  }
 
   ngOnInit() {
     this.reloadCards();
@@ -149,6 +154,9 @@ export class HomeComponent implements OnInit {
     event.stopPropagation();
     this.switchingCard = true;
     card.done = !card.done;
+    /* if (card.done) {
+      card.setDone();
+    } */
     const msg: string = card.done ? 'switched to done' : 'switched to undone';
     const color: string = card.done ? 'success' : 'primary';
     this.cardsService.editCard(card).subscribe((data) => {
@@ -161,6 +169,12 @@ export class HomeComponent implements OnInit {
   getSwitchColor(done: boolean) {
     if (!done) return 'danger';
     else return 'success';
+  }
+
+  getSprintColor(sprint: number) {
+    if (sprint % 3 === 0) return 'secondary';
+    else if (sprint % 3 === 1) return 'tertiary';
+    else return 'dark';
   }
 
   async presentToast(action: string, duration?: number, color?: string) {

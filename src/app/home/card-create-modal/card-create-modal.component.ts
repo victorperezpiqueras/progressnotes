@@ -78,7 +78,7 @@ export class CardCreateModal implements OnInit {
     const card = this.form.value as Card;
     if (this.mode === 'edit') {
       if (card.done && this.card.done !== card.done) {
-        card.doneDate = Date.now();
+        /*  card.setDone(); */
       }
     } else if (this.mode === 'create') {
       card.creationDate = Date.now();

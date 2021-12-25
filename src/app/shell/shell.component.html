@@ -23,12 +23,17 @@
         <ion-list lines="full" class="ion-no-padding">
           <ion-menu-toggle auto-hide="false">
             <ion-item [routerDirection]="'root'" routerLink="/home" routerLinkActive="active">
-              <ion-label><span translate>Home</span></ion-label>
+              <ion-label><ion-icon name="home"></ion-icon><span translate> Home</span></ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" routerLink="/charts" routerLinkActive="active">
+              <ion-label><ion-icon name="bar-chart"></ion-icon><span translate> Charts</span></ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
             <ion-item [routerDirection]="'root'" routerLink="/about" routerLinkActive="active">
-              <ion-label><span translate>About</span></ion-label>
+              <ion-label><ion-icon name="information-circle"></ion-icon><span translate> About</span></ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
